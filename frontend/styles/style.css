@@ -246,3 +246,38 @@ ul{
     height: 350px;
     overflow-y: auto;
 }
+
+.message{
+    height: 100px;
+}
+
+.message-title{
+    margin: 20px;
+    font-size: 40px;
+}
+
+.receive-message{
+    width: 90%;
+    margin: 20px;
+    background-color: lightgrey;
+    border-radius: 20px;
+}
+
+.message-sender{
+    width: 90%;
+    display: flex;
+    align-items: center;
+}
+
+.message-body{
+    width: 90%;
+}
+
+.message-body p{
+    margin: 10px 0 10px 20px;
+    font-size: 20px;
+}
+
+.refresh{
+    color: black;
+}
