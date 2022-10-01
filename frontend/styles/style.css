@@ -186,3 +186,45 @@ ul{
     border: none;
     cursor: pointer;
 }
+
+.users{
+    height: 500px;
+    overflow-y: auto;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 70px;
+    margin: 20px 0;
+    background-color: lightgrey;
+    border-radius: 20px;
+}
+
+.user-image{
+    width: 10%;
+    height: 60%;
+    margin: 0 20px;
+    border-radius: 50%;
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    flex-basis: 75%;
+}
+
+.buttons{
+    display: flex;
+}
+
+.user-button{
+    width: 50px;
+    height: 30px;
+    margin: 0 10px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
