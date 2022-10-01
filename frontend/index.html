@@ -1,12 +1,47 @@
 <html>
     <head>
+        <link rel="stylesheet" href="styles/style.css">
         <title>Landing Page</title>
     </head>
     <body>
         <section class="landing-bar">
             <nav class="nav-bar">
-                <a href="#">Dating</a>
+                <a href="#">Online Dating</a>
             </nav>
         </section>
+        <section class="landing-body flex">
+            <!--Sign-up Form-->
+            <div class="sign-up flex">
+                <h1 class="title">Sign Up</h1>
+                <input type="text" placeholder="Name" class="input">
+                <input type="email" placeholder="Email" class="input">
+                <input type="password" placeholder="Password" class="input">
+                <select id="location" class="input">
+                    <option value="location">Location</option>
+                    <option value="1">Beirut</option>
+                    <option value="2">Mount Lebanon</option>
+                    <option value="3">North Lebanon</option>
+                    <option value="4">South Lebanon</option>
+                    <option value="5">Bekaa</option>
+                    <option value="6">Nabatiyeh</option>
+                    <option value="7">Baalback</option>
+                    <option value="8">Akkar</option>
+                </select>
+                <div class="radio">
+                    <input type="radio" id="male" name="gender" value="Male" class="radio-item">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="Female" class="radio-item">
+                    <label for="female">Female</label>
+                </div>
+                <select id="interested" class="input">
+                    <option value="interested">Interested In</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                    <option value="3">Both</option>
+                </select>
+                <button class="button">Sign Up</button>
+                <span>Already have an account? <a href="#">Sign in</a></span>
+            </div>
+        </section>
     </body>
-</html>
+</html
