@@ -1,6 +1,9 @@
 <html>
     <head>
         <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>Home Page</title>
     </head>
     <body>
@@ -26,8 +29,21 @@
                 <h1></h1>
                 <p class="bio"></p>
                 <p class="age"></p>
+                <button class="button black">Edit Profile</button>
             </div>
             <div class="body-section flex"></div>
         </section>
+        <!--Edit profile form-->
+        <div class="edit flex">
+            <button class="close"><i class="fa-solid fa-xmark"></i></button>
+            <h1>Edit Profile</h1>
+            <h3>Profile Photo</h3>
+            <input type="file" class="input">
+            <h3>Bio</h3>
+            <textarea maxlength="100" class="input area"></textarea>
+            <h3>Age</h3>
+            <input type="text" maxlength="2" class="input">
+            <button class="button last">Edit</button>
+        </div>
     </body>
 </html
