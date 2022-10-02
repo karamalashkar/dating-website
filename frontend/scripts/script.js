@@ -20,6 +20,8 @@ const error_chat=document.getElementById('error-chat');
 const chat_id=document.getElementById('chat-id');
 const chat_message=document.getElementById('chat-message');
 const send=document.getElementById('send');
+const refresh=document.getElementById('refresh');
+const message=document.getElementById('message');
 
 const loadFor = (page) => {
     eval("load_" + page + "();");
@@ -163,8 +165,26 @@ const load_chat = async () => {
         }
     });
     
+    //show received messages
     const sendMessage = () => {}
 
+    refresh.addEventListener('click',()=>{
+        viewMessage();
+    });
+
+    const viewMessage = () => {
+        for(let j=0;j<4;j++){
+            message.innerHTML+=`<div class="receive-message flex">
+            <div class="message-sender">
+                <img src="" class="user-image">
+                <h1></h1>&nbsp;
+                <h1></h1>
+            </div>
+            <div class="message-body">
+                <p></p>
+            </div>
+            </div>`;
+        }
+    }
 }
 
-    
