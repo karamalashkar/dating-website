@@ -1,5 +1,8 @@
 const form_signup=document.getElementById('form');
 const form_signin=document.getElementById('form-in');
+const signup=document.getElementById('sign-up');
+const signin=document.getElementById('sign-in');
+const change=document.getElementById('change');
 
 const loadFor = (page) => {
     eval("load_" + page + "();");
@@ -32,6 +35,12 @@ const load_landing = async () => {
             dataIn.append(i[0],i[1]);
         }
     }
+
+    //switch between sign up and sign in
+    change.addEventListener('click',()=>{
+        signin.style.display='block';
+        signup.style.display='none';
+    })
 
 }
 
