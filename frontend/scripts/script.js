@@ -16,6 +16,10 @@ const photo=document.getElementById('photo');
 const bio=document.getElementById('bio');
 const age=document.getElementById('age');
 const error_edit=document.getElementById('error');
+const error_chat=document.getElementById('error-chat');
+const chat_id=document.getElementById('chat-id');
+const chat_message=document.getElementById('chat-message');
+const send=document.getElementById('send');
 
 const loadFor = (page) => {
     eval("load_" + page + "();");
@@ -143,6 +147,24 @@ const load_home = async () =>{
 
 //chat page
 const load_chat = async () => {
+
+    //send message
+    const dataMessage = new FormData();
+
+    send.addEventListener('click',()=>{
+        if(chat_id.value == '' || chat_message.value == ''){
+            error_chat.innerHTML="Please enter information";
+        }
+
+        else{
+            dataMessage.append("id",chat_id.value);
+            dataMessage.append("message",chat_message.value);
+            sendMessage();
+        }
+    });
+    
+    const sendMessage = () => {}
+
 }
 
     
