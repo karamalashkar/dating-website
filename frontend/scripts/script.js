@@ -3,6 +3,19 @@ const form_signin=document.getElementById('form-in');
 const signup=document.getElementById('sign-up');
 const signin=document.getElementById('sign-in');
 const change=document.getElementById('change');
+const favorite=document.getElementById('open-favorite');
+const favorite_form=document.getElementById('favorite-form');
+const close_favorite=document.getElementById('close-favorite');
+const favorite_list=document.getElementById('favorite-list');
+const open_edit=document.getElementById('open-edit');
+const close_edit=document.getElementById('close-edit');
+const edit=document.getElementById('edit');
+const users=document.getElementById('users');
+const edit_profile=document.getElementById('edit-profile');
+const photo=document.getElementById('photo');
+const bio=document.getElementById('bio');
+const age=document.getElementById('age');
+const error_edit=document.getElementById('error');
 
 const loadFor = (page) => {
     eval("load_" + page + "();");
@@ -45,7 +58,91 @@ const load_landing = async () => {
 }
 
 //home page
-const load_home = async () =>{}
+const load_home = async () =>{
+    //open favorite form
+    favorite.addEventListener('click',()=>{
+        favorite_form.style.display='flex';
+    });
+
+    //close favorite form
+    close_favorite.addEventListener('click',()=>{
+        favorite_form.style.display='none';
+    });
+
+    //open edit form
+    open_edit.addEventListener('click',()=>{
+        edit.style.display='flex';
+    });
+
+    //close edit form
+    close_edit.addEventListener('click',()=>{
+        edit.style.display='none';
+    });
+
+    //show favorite list
+    for(let i=0;i<5;i++){
+        favorite_list.innerHTML+=`<div class="user">
+        <img src="" class="user-image">
+        <h1></h1>  
+        </div>`;
+    }
+
+    // show users
+    for(let i=0;i<5;i++){
+        users.innerHTML+=`<div class="user">
+        <div class="user-info info">
+            <img src="" class="user-image">
+            <h1></h1>
+        </div>
+        <div class="user-info buttons">
+            <button class="user-button"><i class="fa fa-heart"></i></button>
+            <button class="user-button">Block</button>
+        </div>    
+        </div>`;
+    }
+
+    //edit profile
+    const reader = new FileReader();
+    const formData = new FormData();
+
+    edit_profile.addEventListener('click',()=>{
+        if(bio.value == '' || age.value == ''){
+            if(photo.value == ''){
+                error_edit.innerHTML='Please enter information';
+            }
+            else{
+                reader.addEventListener("load", () => {
+                    formData.append("image", reader.result);
+                    editProfile();
+                });
+                reader.readAsDataURL(photo.files[0]);
+            }            
+        }        
+        else{
+            if(photo.value==''){
+                formData.append("bio", bio.value);
+                formData.append("age", bio.age);
+                editProfile();
+            }
+            else{
+                formData.append("bio", bio.value);
+                formData.append("age", bio.age);
+                reader.addEventListener("load", () => {
+                    formData.append("image", reader.result);
+                    editProfile();
+                });
+                reader.readAsDataURL(photo.files[0]);
+            }        
+        }
+    });
+
+    const editProfile = () => {
+        location.reload();
+    }
+}
 
 //chat page
-const load_chat = async () => {}
+const load_chat = async () => {
+}
+
+    
