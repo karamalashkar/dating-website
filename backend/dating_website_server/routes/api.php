@@ -9,3 +9,4 @@ Route::post("/user_interest",[UserController::class, 'getInterestUser']);
 Route::post("/add_message",[UserController::class, 'addMessage']);
 Route::post("/get_message",[UserController::class, 'getMessage']);
 Route::post("/get_favorite",[UserController::class, 'getFavorite']);
+Route::post("/add_favorite",[UserController::class, 'addFavorite']);

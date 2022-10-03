@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Hashing\BcryptHasher;
 use App\Models\User;
 use App\Models\Chat;
+use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -110,5 +111,26 @@ class UserController extends Controller
             'data' => $users
         ]);
     }
+
+    //add favorite users
+    function addFavorite(Request $request){
+        $favorite= new Favorite;
+
+        $favorite->user_id=$request->user_id;
+        $favorite->favorite_id=$request->favorite_id;
+        
+        if($favorite->save()){
+            return response()->json([
+                'success' => "success",
+                'data' => $favorite
+            ]);
+        }
+
+        return response()->json([
+            'success' => "success",
+            'data' =>'error'
+        ]);
+    }
     
+
 }
