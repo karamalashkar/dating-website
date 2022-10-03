@@ -49,4 +49,19 @@ class UserController extends Controller
         ]);
 
     }
+
+    //get all users having the same interest
+    function getInterestUser(Request $request){
+        $interest=$request->interest_id;
+
+        $users=User::
+                where('interest',$interest)
+                ->get();
+
+        return response()->json([
+            'success' => "success",
+            'data' => $users
+        ]);
+
+    }
 }
