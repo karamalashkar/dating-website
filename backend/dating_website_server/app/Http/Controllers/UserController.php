@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Hashing\BcryptHasher;
 use App\Models\User;
 use App\Models\Chat;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -33,4 +35,18 @@ class UserController extends Controller
 
     }
 
+    //get user using user_id
+    function getUser(Request $request){
+        $id=$request->user_id;
+
+        $users=User::
+                where('id',$id)
+                ->get();
+
+        return response()->json([
+            'success' => "success",
+            'data' => $users
+        ]);
+
+    }
 }
