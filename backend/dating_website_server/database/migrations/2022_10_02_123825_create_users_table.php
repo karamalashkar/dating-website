@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string("name");
             $table->string("email");
             $table->string("password");
-            $table->string("picture");
-            $table->string("bio");
-            $table->string("age");
+            $table->string("picture")->default('../profile/blank.jpg');
+            $table->string("bio")->default('bio');
+            $table->string("age")->default('age');
             $table->string("gender");
             $table->string("interest");
             $table->string("location");
