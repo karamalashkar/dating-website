@@ -87,5 +87,16 @@ class UserController extends Controller
     
     }
 
+    //receive message
+    function getMessage(Request $request){
+        $users=User::join('chats','chats.sender_id','=','users.id')
+        ->where('chats.receiver_id',$request->id)
+        ->get(['users.*','chats.message']);
+
+        return response()->json([
+            'success' => "success",
+            'data' => $users
+        ]);
+    }
     
 }

@@ -7,4 +7,5 @@ Route::post("/add_user",[UserController::class, 'addUser']);
 Route::post("/user",[UserController::class, 'getUser']);
 Route::post("/user_interest",[UserController::class, 'getInterestUser']);
 Route::post("/add_message",[UserController::class, 'addMessage']);
+Route::post("/get_message",[UserController::class, 'getMessage']);
 
