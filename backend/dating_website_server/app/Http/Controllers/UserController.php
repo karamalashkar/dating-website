@@ -64,4 +64,28 @@ class UserController extends Controller
         ]);
 
     }
+
+    //send message
+    function addMessage(Request $request){
+            $chat= new Chat;
+    
+            $chat->sender_id=$request->id_sender;
+            $chat->receiver_id=$request->id_receive;
+            $chat->message=$request->message;
+            
+            if($chat->save()){
+                return response()->json([
+                    'success' => "success",
+                    'data' => $chat
+                ]);
+            }
+    
+            return response()->json([
+                'success' => "success",
+                'data' =>'error'
+            ]);
+    
+    }
+
+    
 }
