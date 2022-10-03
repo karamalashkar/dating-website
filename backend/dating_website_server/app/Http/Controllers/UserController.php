@@ -7,6 +7,7 @@ use Illuminate\Hashing\BcryptHasher;
 use App\Models\User;
 use App\Models\Chat;
 use App\Models\Favorite;
+use App\Models\Block;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -132,5 +133,24 @@ class UserController extends Controller
         ]);
     }
     
+    //add block users
+    function addBlock(Request $request){
+        $block= new Block;
+
+        $block->user_id=$request->user_id;
+        $block->block_id=$request->block_id;
+        
+        if($block->save()){
+            return response()->json([
+                'success' => "success",
+                'data' => $block
+            ]);
+        }
+
+        return response()->json([
+            'success' => "success",
+            'data' =>'error'
+        ]);
+    }
 
 }
