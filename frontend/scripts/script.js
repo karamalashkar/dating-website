@@ -127,6 +127,7 @@ const load_home = async () =>{
 	user_age.innerHTML=response_user.data.data[0].age;
 	//user_photo.src=response_user.data.data[0].picture;
     
+    //getting user having same interest
     const userInterest = new FormData();
 	userInterest.append('interest_id',response_user.data.data[0].interest);
 	const url_interest = `${baseURL}user_interest`;
@@ -225,15 +226,22 @@ const load_chat = async () => {
         }
 
         else{
-            dataMessage.append("id",chat_id.value);
+			dataMessage.append("id_sender",data_user.id);
+            dataMessage.append("id_receive",chat_id.value);
             dataMessage.append("message",chat_message.value);
             sendMessage();
         }
     });
     
     //show received messages
-    const sendMessage = () => {}
+    const sendMessage = async () => {
+		const url_chat = `${baseURL}add_message`;
+		const response_chat = await postAPI(url_chat,dataMessage);
+	}
 
+
+
+    //show received messages
     refresh.addEventListener('click',()=>{
         viewMessage();
     });
