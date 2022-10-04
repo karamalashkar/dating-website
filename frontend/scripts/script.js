@@ -117,6 +117,15 @@ const load_landing = async () => {
 
 //home page
 const load_home = async () =>{
+    //get user profile
+    const userData = new FormData();
+	userData.append('user_id',data_user.id);
+	const url_user = `${baseURL}user`;
+	const response_user = await postAPI(url_user,userData);
+	user_name.innerHTML=response_user.data.data[0].name;
+	user_bio.innerHTML=response_user.data.data[0].bio;
+	user_age.innerHTML=response_user.data.data[0].age;
+	//user_photo.src=response_user.data.data[0].picture;
 	
     //open favorite form
     favorite.addEventListener('click',()=>{
