@@ -38,7 +38,6 @@ const user_bio=document.getElementById('user-bio');
 const user_age=document.getElementById('user-age');
 const user_photo=document.getElementById('user-photo');
 const user_list=document.getElementsByName('user-list');
-const us=document.querySelector('#us');
 const col=document.getElementsByClassName('like');
 const block=document.querySelectorAll('.block');
 
@@ -135,8 +134,9 @@ const load_home = async () =>{
     for(let i=0;i<response_interest.data.data.length;i++){
         users.innerHTML+=`<div class="user">
         <div class="user-info info">
-            <img src="file:///C:/Users/RT/Desktop/dating/dating-website/profile/blank.jpg" class="user-image">
+            <img src="" class="user-image">
             <h1>${response_interest.data.data[i].name}</h1>
+			<h1 class="user-list">${response_interest.data.data[i].id}</h1>
         </div>
         <div class="user-info buttons">
             <button class="user-button like"><i class="fa fa-heart"></i></button>
@@ -149,6 +149,7 @@ const load_home = async () =>{
     //open favorite form
     favorite.addEventListener('click',()=>{
         favorite_form.style.display='flex';
+		showFavorites();
     });
 
     //close favorite form
@@ -167,14 +168,21 @@ const load_home = async () =>{
     });
 
      //show favorite list
-     for(let i=0;i<5;i++){
+	const showFavorites = async ()=>{
+		const dataFavorite = new FormData();
+		dataFavorite.append('id',data_user.id);
+		const url_favorite = `${baseURL}get_favorite`;
+		const response_favorite = await postAPI(url_favorite,dataFavorite);
+		console.log(111);
+		for(let y=0;y<response_favorite.data.data.length;y++){
         favorite_list.innerHTML+=`<div class="user">
-        <img src="" class="user-image">
-        <h1></h1>  
-        </div>`;
-    }
+			<img src="${response_favorite.data.data[y].picture}" class="user-image">
+		<h1>${response_favorite.data.data[y].name}</h1>  
+			</div>`;
+		}
+	}
 
-    //edit profile
+        //edit profile
     const reader = new FileReader();
     const formData = new FormData();
 
@@ -185,6 +193,7 @@ const load_home = async () =>{
             }
             else{
                 reader.addEventListener("load", () => {
+					formData.append('status','imageOnly');
                     formData.append("image", reader.result);
                     editProfile();
                 });
@@ -194,12 +203,14 @@ const load_home = async () =>{
         else{
             if(photo.value==''){
                 formData.append("bio", bio.value);
-                formData.append("age", bio.age);
+                formData.append("age", age.value);
+				formData.append('status','noImage');
                 editProfile();
             }
             else{
                 formData.append("bio", bio.value);
-                formData.append("age", bio.age);
+                formData.append("age", age.value);
+				formData.append('status','all');
                 reader.addEventListener("load", () => {
                     formData.append("image", reader.result);
                     editProfile();
@@ -209,7 +220,10 @@ const load_home = async () =>{
         }
     });
 
-    const editProfile = () => {
+    const editProfile = async () => {
+		formData.append('id',data_user.id);
+		const url_edit = `${baseURL}edit`;
+		const response_edit = await postAPI(url_edit,formData);
         location.reload();
     }
 }
