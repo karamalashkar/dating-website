@@ -126,6 +126,24 @@ const load_home = async () =>{
 	user_bio.innerHTML=response_user.data.data[0].bio;
 	user_age.innerHTML=response_user.data.data[0].age;
 	//user_photo.src=response_user.data.data[0].picture;
+    
+    const userInterest = new FormData();
+	userInterest.append('interest_id',response_user.data.data[0].interest);
+	const url_interest = `${baseURL}user_interest`;
+	const response_interest = await postAPI(url_interest,userInterest);
+    for(let i=0;i<response_interest.data.data.length;i++){
+        users.innerHTML+=`<div class="user">
+        <div class="user-info info">
+            <img src="file:///C:/Users/RT/Desktop/dating/dating-website/profile/blank.jpg" class="user-image">
+            <h1>${response_interest.data.data[i].name}</h1>
+        </div>
+        <div class="user-info buttons">
+            <button class="user-button like"><i class="fa fa-heart"></i></button>
+            <button class="user-button block" onclick='sey()'>Block</button>
+        </div>    
+        </div>`;
+		
+    }
 	
     //open favorite form
     favorite.addEventListener('click',()=>{
@@ -152,20 +170,6 @@ const load_home = async () =>{
         favorite_list.innerHTML+=`<div class="user">
         <img src="" class="user-image">
         <h1></h1>  
-        </div>`;
-    }
-
-    // show users
-    for(let i=0;i<5;i++){
-        users.innerHTML+=`<div class="user">
-        <div class="user-info info">
-            <img src="" class="user-image">
-            <h1></h1>
-        </div>
-        <div class="user-info buttons">
-            <button class="user-button"><i class="fa fa-heart"></i></button>
-            <button class="user-button">Block</button>
-        </div>    
         </div>`;
     }
 
