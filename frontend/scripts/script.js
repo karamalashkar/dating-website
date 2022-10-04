@@ -1,3 +1,13 @@
+var user={
+	id: 6,
+};
+
+var json=JSON.stringify(user);
+localStorage.setItem('data',json);
+
+var user_info=localStorage.getItem('data');
+var data_user=JSON.parse(user_info);
+
 const form_signup=document.getElementById('form');
 const form_signin=document.getElementById('form-in');
 const signup=document.getElementById('sign-up');
@@ -22,24 +32,66 @@ const chat_message=document.getElementById('chat-message');
 const send=document.getElementById('send');
 const refresh=document.getElementById('refresh');
 const message=document.getElementById('message');
+const error_password=document.getElementById('error-password');
+const user_name=document.getElementById('user-name');
+const user_bio=document.getElementById('user-bio');
+const user_age=document.getElementById('user-age');
+const user_photo=document.getElementById('user-photo');
+const user_list=document.getElementsByName('user-list');
+const us=document.querySelector('#us');
+const col=document.getElementsByClassName('like');
+const block=document.querySelectorAll('.block');
+
+const baseURL= "http://127.0.0.1:8000/api/";
 
 const loadFor = (page) => {
     eval("load_" + page + "();");
 }
 
+const getAPI = async (api_url) => {
+    try{
+        return await axios(api_url);
+    }catch(error){
+        console.log("Error from GET API", error);
+    }
+}
+
+const postAPI = async (api_url, api_data) => {
+    try{
+        return await axios.post(
+            api_url,
+            api_data,
+        );
+    }catch(error){
+        console.log("Error from POST API", error);
+    }
+}
+
+
 //landing page
 const load_landing = async () => {
     //on submit sign up form
-    form_signup.addEventListener('submit' , () => {
-        signUp(form_signup);    
+    form_signup.addEventListener('submit' , e => {
+        signUp(form_signup,e);    
     });
     
     //collect user info in sign up
-    const signUp=(data)=>{
+    const signUp= async(data,e)=>{
+		e.preventDefault();
         const dataUser=new URLSearchParams();
         for (const p of new FormData(data)){
             dataUser.append(p[0],p[1],p[2],p[3],p[4],p[5]);
         }
+		
+		var pass=  /^[A-Za-z]\w{7,14}$/;
+			if(dataUser.get('password').match(pass)){
+				const url = `${baseURL}add_user`;
+				const response = await postAPI(url,dataUser);
+				location.reload();	
+			}
+			else{
+				error_password.innerHTML='Please enter a strong Password containing A,a,1,_';
+			}
     }
 
     //on submit sign in form
@@ -48,7 +100,7 @@ const load_landing = async () => {
     });
 
     //collect user info in sign in
-    const signIn=(data)=>{
+    const signIn=async (data)=>{
         const dataIn=new URLSearchParams();
         for (const i of new FormData(data)){
             dataIn.append(i[0],i[1]);
@@ -65,6 +117,7 @@ const load_landing = async () => {
 
 //home page
 const load_home = async () =>{
+	
     //open favorite form
     favorite.addEventListener('click',()=>{
         favorite_form.style.display='flex';
@@ -85,8 +138,8 @@ const load_home = async () =>{
         edit.style.display='none';
     });
 
-    //show favorite list
-    for(let i=0;i<5;i++){
+     //show favorite list
+     for(let i=0;i<5;i++){
         favorite_list.innerHTML+=`<div class="user">
         <img src="" class="user-image">
         <h1></h1>  
@@ -146,10 +199,10 @@ const load_home = async () =>{
         location.reload();
     }
 }
+    
 
 //chat page
 const load_chat = async () => {
-
     //send message
     const dataMessage = new FormData();
 
@@ -187,4 +240,5 @@ const load_chat = async () => {
         }
     }
 }
+
 
