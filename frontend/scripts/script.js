@@ -37,9 +37,7 @@ const user_name=document.getElementById('user-name');
 const user_bio=document.getElementById('user-bio');
 const user_age=document.getElementById('user-age');
 const user_photo=document.getElementById('user-photo');
-const user_list=document.getElementsByName('user-list');
-const col=document.getElementsByClassName('like');
-const block=document.querySelectorAll('.block');
+const logout=document.getElementById('logout');
 
 const baseURL= "http://127.0.0.1:8000/api/";
 
@@ -173,7 +171,6 @@ const load_home = async () =>{
 		dataFavorite.append('id',data_user.id);
 		const url_favorite = `${baseURL}get_favorite`;
 		const response_favorite = await postAPI(url_favorite,dataFavorite);
-		console.log(111);
 		for(let y=0;y<response_favorite.data.data.length;y++){
         favorite_list.innerHTML+=`<div class="user">
 			<img src="${response_favorite.data.data[y].picture}" class="user-image">
@@ -226,6 +223,11 @@ const load_home = async () =>{
 		const response_edit = await postAPI(url_edit,formData);
         location.reload();
     }
+
+    logout.addEventListener('click',()=>{
+        window.localStorage.clear();
+        window.location.replace('../frontend/index.html');
+    });
 }
     
 
@@ -253,8 +255,6 @@ const load_chat = async () => {
 		const response_chat = await postAPI(url_chat,dataMessage);
         location.reload();
     }
-
-
 
     //show received messages
     refresh.addEventListener('click',()=>{
