@@ -12,38 +12,58 @@
                 <div class="item logo">
                     <a href="#">Online Dating</a>
                 </div>
+                <!--<div class="menu">
+                    <button class="menu-button"><i class="fa-solid fa-bars"></i></button>
+                </div>-->
                 <div class="item links">
                     <ul>
-                        <li><a>Home</a></li>
-                        <li><a>Favorites</a></li>
-                        <li><a>Chats</a></li>
+                        <li><a href="../frontend/home.html">Home</a></li>
+                        <li><a id="open-favorite">Favorites</a></li>
+                        <li><a href="../frontend/chat.html">Chats</a></li>
                     </ul>
                     <button class="bar-button">Logout</button>
                 </div>
+                <button class="menu-button"><i class="fa-solid fa-bars"></i></button>
             </nav>
         </section>
         <section class="page-body">
             <!--Profile section-->
             <div class="body-section flex profile">
-                <img src="assets/blank.jpg" class="profile-image">
-                <h1></h1>
-                <p class="bio"></p>
-                <p class="age"></p>
-                <button class="button black">Edit Profile</button>
+                <img src="file:///C:/Users/RT/Desktop/dating/dating-website/profile/blank.jpg" class="profile-image" id="user-photo">
+                <h1 id="user-name"></h1>
+                <p id="user-bio" class="bio"></p>
+                <p id="user-age" class="age"></p>
+                <button class="button black" id="open-edit">Edit Profile</button>
             </div>
-            <div class="body-section flex"></div>
+            <div class="body-section">
+                <div class="users flex" id="users">
+                </div>
+            </div>
         </section>
         <!--Edit profile form-->
-        <div class="edit flex">
-            <button class="close"><i class="fa-solid fa-xmark"></i></button>
-            <h1>Edit Profile</h1>
+        <div class="edit flex" id="edit">
+            <button class="close" id="close-edit"><i class="fa-solid fa-xmark"></i></button>
+            <p id="error"></p>
+            <h1 class="popup-title">Edit Profile</h1>
             <h3>Profile Photo</h3>
-            <input type="file" class="input">
+            <center><input type="file" class="input" id="photo"></center>
             <h3>Bio</h3>
-            <textarea maxlength="100" class="input area"></textarea>
+            <textarea maxlength="100" class="input area" id="bio"></textarea>
             <h3>Age</h3>
-            <input type="text" maxlength="2" class="input">
-            <button class="button last">Edit</button>
+            <input type="text" maxlength="2" class="input" id="age">
+            <button class="button last" id="edit-profile">Edit</button>
         </div>
+		<h1 id='ra'>Heyooo</h1>
+        <div class="favorites flex" id="favorite-form">
+            <button class="close" id="close-favorite"><i class="fa-solid fa-xmark"></i></button>
+            <h1 class="popup-title">Favorites</h1>
+            <div class="favorite-user flex" id="favorite-list">
+            </div>    
+        </div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+        <script src="scripts/script.js"></script>
+        <script>
+            loadFor("home");
+        </script>
     </body>
 </html
