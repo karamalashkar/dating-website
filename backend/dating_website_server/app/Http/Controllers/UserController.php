@@ -153,4 +153,45 @@ class UserController extends Controller
         ]);
     }
 
+    //edit profile
+    function editProfile(Request $request){
+        $status=$request->status;
+        
+        if($status=='imageOnly'){
+            $code64 = explode(',', $request->image);
+            $img = base64_decode($code64[1]);
+            $extension = explode(";", explode('/', $code64[0])[1])[0];
+            $photo_path = "profile/" . uniqid() . "." . $extension;
+            file_put_contents($photo_path, $img);  
+            $users=User::where('id',$request->id)
+            ->update(['picture'=>$photo_path]);
+            return response()->json([
+                'success' => "success",
+                'data' => $users
+            ]);
+        }
+
+        else if($status=='noImage'){
+            $users=User::where('id',$request->id)
+            ->update(['bio'=>$request->bio,'age'=>$request->age]);
+            return response()->json([
+                'success' => "success",
+                'data' => $users
+            ]);
+        }
+
+        else{
+            $code64 = explode(',', $request->image);
+            $img = base64_decode($code64[1]);
+            $extension = explode(";", explode('/', $code64[0])[1])[0];
+            $photo_path = "profile/" . uniqid() . "." . $extension;
+            file_put_contents($photo_path, $img);  
+            $users=User::where('id',$request->id)
+            ->update(['picture'=>$photo_path,'bio'=>$request->bio,'age'=>$request->age]);
+            return response()->json([
+                'success' => "success",
+                'data' => $users
+            ]);
+        }
+    }
 }
