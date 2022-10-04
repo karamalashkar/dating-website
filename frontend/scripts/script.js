@@ -237,7 +237,8 @@ const load_chat = async () => {
     const sendMessage = async () => {
 		const url_chat = `${baseURL}add_message`;
 		const response_chat = await postAPI(url_chat,dataMessage);
-	}
+        location.reload();
+    }
 
 
 
@@ -246,20 +247,24 @@ const load_chat = async () => {
         viewMessage();
     });
 
-    const viewMessage = () => {
-        for(let j=0;j<4;j++){
+    const viewMessage = async () => {
+		const dataChat = new FormData();
+		dataChat.append('id',data_user.id);
+		const url_message = `${baseURL}get_message`;
+		const response_message = await postAPI(url_message,dataChat);
+        
+		for(let j=0;j<response_message.data.data.length;j++){
             message.innerHTML+=`<div class="receive-message flex">
             <div class="message-sender">
-                <img src="" class="user-image">
-                <h1></h1>&nbsp;
-                <h1></h1>
+                <img src="${response_message.data.data[j].picture}" class="user-image">
+                <h1>${response_message.data.data[j].id}</h1>&nbsp;
+                <h1>${response_message.data.data[j].name}</h1>
             </div>
             <div class="message-body">
-                <p></p>
+                <p>${response_message.data.data[j].message}</p>
             </div>
             </div>`;
         }
     }
+
 }
-
-
