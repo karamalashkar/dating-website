@@ -49,6 +49,22 @@
 
 /*Body section*/
 
+.landing-body{
+	display: flex;
+}
+
+.landing-element{
+	align-items: center;
+	width: 50%;
+}
+
+.landing-element img{
+	width: 80%;
+	height: 510px;
+	margin: 30px 0;
+	border-radius: 20px;
+}
+
 .title{
     padding: 20px 0;
     color: white;
@@ -138,22 +154,54 @@ ul{
     border-right: 1px solid black;
 }
 
+.profile-user{
+	display: flex;
+	align-items: center;
+}
+
+.profile-info{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 90%;
+	margin: 20px 30px;
+}
+
+.info-user{
+	width: 48%;
+	height: 150px;
+	background: lightgrey;
+	margin: 20px 0;
+	border-radius: 20px;
+}
+
+.info-user:hover{
+	transform: scale(1.1);
+	transition: all 0.3s ease-in-out;
+}
+
+.box-title{
+	padding: 5px 0;
+}
+
 .profile-image{
     width: 30%;
     height: 30%;
-    margin: 25px 0;
+    margin: 25px 30px;
     border-radius: 50%;
 }
 
 .bio{
     margin: 30px 0;
-    width: 50%;
+    max-width: 90%;
+	font-size: 20px;
 }
 
 .black{
     background-color: black;
     color: white;
     width: 30%;
+	margin: 0 100px;
 }
 
 .edit{
@@ -201,17 +249,30 @@ ul{
 
 .user{
     display: flex;
-    align-items: center;
     width: 90%;
-    height: 70px;
+    height: auto;
     margin: 20px 0;
     background-color: lightgrey;
     border-radius: 20px;
 }
 
+.col{
+	flex-direction: column;
+}
+
+.user-card{
+	display: flex;
+	margin: 10px 0;
+}
+
+.show-bio{
+	margin: 10px 20px;
+	font-size: 12px;
+}
+
 .user-image{
-    width: 10%;
-    height: 60%;
+    width: 60px;
+    height: 60px;
     margin: 0 20px;
     border-radius: 50%;
 }
@@ -246,6 +307,10 @@ ul{
     left: 25%;
     bottom: 10%;
     display: none;
+}
+
+.favorite-name{
+	color: black;
 }
 
 .favorite-user{
@@ -317,6 +382,12 @@ ul{
 .user-list{
 	display: none;
 }
+
+.name-user{
+	margin: 20px 0;
+	font-size: 35px;
+}
+	
 	
 
 @media (max-width: 900px){
@@ -336,7 +407,7 @@ ul{
         border-right: none;
         border-bottom: 1px solid black;
     }
-
+	
     .nav-bar{
         display: block;
     }
@@ -360,5 +431,17 @@ ul{
 
     .menu-button{
         display: block;
+    }
+
+    .landing-body{
+        flex-direction: column;
+    }
+
+    .landing-element{
+        width: 100%;
+    }
+
+    .landing-element img{
+        width: 90%;
     }
 }
