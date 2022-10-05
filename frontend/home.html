@@ -28,13 +28,23 @@
         </section>
         <section class="page-body">
             <!--Profile section-->
-            <div class="body-section flex profile">
-                <img src="file:///C:/Users/RT/Desktop/dating/dating-website/profile/blank.jpg" class="profile-image" id="user-photo">
-                <h1 id="user-name"></h1>
-                <p id="user-bio" class="bio"></p>
-                <p id="user-age" class="age"></p>
-                <button class="button black" id="open-edit">Edit Profile</button>
-            </div>
+            <div class="body-section profile">
+				<div class='profile-user'>
+					<img src="assets/user.jpg" class="profile-image" id="user-photo">
+					<h1 class='name-user' id="user-name"></h1>
+					<button class="button black" id="open-edit">Edit Profile</button>
+				</div>
+				<div class='profile-info'>
+					<div class='info-user flex'>
+						<h1 class="box-title">Bio</h1>
+						<p id="user-bio" class="bio"></p>
+					</div>
+					<div class='info-user flex'>
+						<h1 class="box-title">Age</h1>
+						<p id="user-age" class="bio"></p>	
+					</div>
+				</div>
+			</div>	
             <div class="body-section">
                 <div class="users flex" id="users">
                 </div>
@@ -48,12 +58,11 @@
             <h3>Profile Photo</h3>
             <center><input type="file" class="input" id="photo"></center>
             <h3>Bio</h3>
-            <textarea maxlength="100" class="input area" id="bio"></textarea>
+            <textarea maxlength="50" class="input area" id="bio"></textarea>
             <h3>Age</h3>
             <input type="text" maxlength="2" class="input" id="age">
             <button class="button last" id="edit-profile">Edit</button>
         </div>
-		<h1 id='ra'>Heyooo</h1>
         <div class="favorites flex" id="favorite-form">
             <button class="close" id="close-favorite"><i class="fa-solid fa-xmark"></i></button>
             <h1 class="popup-title">Favorites</h1>
