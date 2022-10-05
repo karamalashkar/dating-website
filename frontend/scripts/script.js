@@ -1,13 +1,3 @@
-var user={
-	id: 6,
-};
-
-var json=JSON.stringify(user);
-localStorage.setItem('data',json);
-
-var user_info=localStorage.getItem('data');
-var data_user=JSON.parse(user_info);
-
 const form_signup=document.getElementById('form');
 const form_signin=document.getElementById('form-in');
 const signup=document.getElementById('sign-up');
@@ -36,8 +26,12 @@ const error_password=document.getElementById('error-password');
 const user_name=document.getElementById('user-name');
 const user_bio=document.getElementById('user-bio');
 const user_age=document.getElementById('user-age');
+const user_interest=document.getElementById('user-int');
+const user_location=document.getElementById('user-loc');
 const user_photo=document.getElementById('user-photo');
 const logout=document.getElementById('logout');
+
+const ka=document.getElementById('ka');
 
 const baseURL= "http://127.0.0.1:8000/api/";
 
@@ -53,11 +47,15 @@ const getAPI = async (api_url) => {
     }
 }
 
-const postAPI = async (api_url, api_data) => {
+const postAPI = async (api_url, api_data, api_token = null) => {
     try{
         return await axios.post(
             api_url,
             api_data,
+            { headers:{
+                    'Authorization' : "Bearer" + api_token
+                }
+            }
         );
     }catch(error){
         console.log("Error from POST API", error);
@@ -81,7 +79,7 @@ const load_landing = async () => {
         }
 		
 		var pass=  /^[A-Za-z]\w{7,14}$/;
-			if(dataUser.get('password').match(pass)){
+			if(dataUser.get('password_up').match(pass)){
 				const url = `${baseURL}add_user`;
 				const response = await postAPI(url,dataUser);
 				location.reload();	
@@ -102,7 +100,16 @@ const load_landing = async () => {
         for (const i of new FormData(data)){
             dataIn.append(i[0],i[1]);
         }
-    }
+		
+		const url_login = `${baseURL}login`;
+		const response_login = await postAPI(url_login,dataIn).then((response)=>{
+			localStorage.setItem('id',response.data.id[0].id);
+			localStorage.setItem('token',response.data.access_token);
+			window.location.replace('../frontend/home.html');
+			tok=localStorage.getItem('token');	
+		});
+		
+	}
 
     //switch between sign up and sign in
     change.addEventListener('click',()=>{
@@ -114,23 +121,33 @@ const load_landing = async () => {
 
 //home page
 const load_home = async () =>{
-    //get user profile
+	
+	var id=localStorage.getItem('id');
+	var token=localStorage.getItem('token');
+    
+	if(token=='' || id==''){
+		window.location.replace('../frontend/index.html');
+	}
+	
+	//get user profile
     const userData = new FormData();
-	userData.append('user_id',data_user.id);
+	userData.append('user_id',id);
 	const url_user = `${baseURL}user`;
-	const response_user = await postAPI(url_user,userData);
+	const response_user = await postAPI(url_user,userData,token);
 	user_name.innerHTML=response_user.data.data[0].name;
 	user_bio.innerHTML=response_user.data.data[0].bio;
 	user_age.innerHTML=response_user.data.data[0].age;
-	//user_photo.src=response_user.data.data[0].picture;
+	user_photo.src=response_user.data.data[0].picture;
     
     //getting user having same interest
     const userInterest = new FormData();
+	userInterest.append('id',id);
 	userInterest.append('interest_id',response_user.data.data[0].interest);
 	const url_interest = `${baseURL}user_interest`;
-	const response_interest = await postAPI(url_interest,userInterest);
+	const response_interest = await postAPI(url_interest,userInterest,token);
     for(let i=0;i<response_interest.data.data.length;i++){
-        users.innerHTML+=`<div class="user">
+        users.innerHTML+=`<div class="user col">
+		<div class='user-card'>
         <div class="user-info info">
             <img src="" class="user-image">
             <h1>${response_interest.data.data[i].name}</h1>
@@ -139,9 +156,12 @@ const load_home = async () =>{
         <div class="user-info buttons">
             <button class="user-button like"><i class="fa fa-heart"></i></button>
             <button class="user-button block" onclick='sey()'>Block</button>
-        </div>    
-        </div>`;
-		
+        </div>
+		</div>
+		<div class='show-bio'>
+		<h1>${response_interest.data.data[i].bio}</h1>
+		<div>	
+        </div>`;		
     }
 	
     //open favorite form
@@ -168,13 +188,13 @@ const load_home = async () =>{
      //show favorite list
 	const showFavorites = async ()=>{
 		const dataFavorite = new FormData();
-		dataFavorite.append('id',data_user.id);
+		dataFavorite.append('id',id);
 		const url_favorite = `${baseURL}get_favorite`;
-		const response_favorite = await postAPI(url_favorite,dataFavorite);
+		const response_favorite = await postAPI(url_favorite,dataFavorite,token);
 		for(let y=0;y<response_favorite.data.data.length;y++){
-        favorite_list.innerHTML+=`<div class="user">
+        favorite_list.innerHTML+=`<div class="user fav">
 			<img src="${response_favorite.data.data[y].picture}" class="user-image">
-		<h1>${response_favorite.data.data[y].name}</h1>  
+		<h1 class='favorite-name'>${response_favorite.data.data[y].name}</h1>  
 			</div>`;
 		}
 	}
@@ -192,6 +212,7 @@ const load_home = async () =>{
                 reader.addEventListener("load", () => {
 					formData.append('status','imageOnly');
                     formData.append("image", reader.result);
+					console.log(reader.result);
                     editProfile();
                 });
                 reader.readAsDataURL(photo.files[0]);
@@ -218,9 +239,9 @@ const load_home = async () =>{
     });
 
     const editProfile = async () => {
-		formData.append('id',data_user.id);
+		formData.append('id',id);
 		const url_edit = `${baseURL}edit`;
-		const response_edit = await postAPI(url_edit,formData);
+		const response_edit = await postAPI(url_edit,formData,token);
         location.reload();
     }
 
@@ -233,6 +254,13 @@ const load_home = async () =>{
 
 //chat page
 const load_chat = async () => {
+	
+	if(token=='' || id==''){
+		window.location.replace('../frontend/index.html');
+	}
+	
+	var id=localStorage.getItem('id');
+	var token=localStorage.getItem('token');
     //send message
     const dataMessage = new FormData();
 
@@ -242,7 +270,7 @@ const load_chat = async () => {
         }
 
         else{
-			dataMessage.append("id_sender",data_user.id);
+			dataMessage.append("id_sender",id);
             dataMessage.append("id_receive",chat_id.value);
             dataMessage.append("message",chat_message.value);
             sendMessage();
@@ -252,7 +280,7 @@ const load_chat = async () => {
     //show received messages
     const sendMessage = async () => {
 		const url_chat = `${baseURL}add_message`;
-		const response_chat = await postAPI(url_chat,dataMessage);
+		const response_chat = await postAPI(url_chat,dataMessage,token);
         location.reload();
     }
 
@@ -263,9 +291,9 @@ const load_chat = async () => {
 
     const viewMessage = async () => {
 		const dataChat = new FormData();
-		dataChat.append('id',data_user.id);
+		dataChat.append('id',id);
 		const url_message = `${baseURL}get_message`;
-		const response_message = await postAPI(url_message,dataChat);
+		const response_message = await postAPI(url_message,dataChat,token);
         
 		for(let j=0;j<response_message.data.data.length;j++){
             message.innerHTML+=`<div class="receive-message flex">
@@ -280,5 +308,4 @@ const load_chat = async () => {
             </div>`;
         }
     }
-
 }
