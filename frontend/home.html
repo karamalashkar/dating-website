@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>Home Page</title>
+    </head>
+    <body>
+        <section class="landing-bar">
+            <nav class="nav-bar">
+                <div class="item logo">
+                    <a href="#">Online Dating</a>
+                </div>
+                <!--<div class="menu">
+                    <button class="menu-button"><i class="fa-solid fa-bars"></i></button>
+                </div>-->
+                <div class="item links">
+                    <ul>
+                        <li><a href="../frontend/home.html">Home</a></li>
+                        <li><a id="open-favorite">Favorites</a></li>
+                        <li><a href="../frontend/chat.html">Chats</a></li>
+                    </ul>
+                    <button class="bar-button" id="logout">Logout</button>
+                </div>
+                <button class="menu-button"><i class="fa-solid fa-bars"></i></button>
+            </nav>
+        </section>
+        <section class="page-body">
+            <!--Profile section-->
+            <div class="body-section flex profile">
+                <img src="file:///C:/Users/RT/Desktop/dating/dating-website/profile/blank.jpg" class="profile-image" id="user-photo">
+                <h1 id="user-name"></h1>
+                <p id="user-bio" class="bio"></p>
+                <p id="user-age" class="age"></p>
+                <button class="button black" id="open-edit">Edit Profile</button>
+            </div>
+            <div class="body-section">
+                <div class="users flex" id="users">
+                </div>
+            </div>
+        </section>
+        <!--Edit profile form-->
+        <div class="edit flex" id="edit">
+            <button class="close" id="close-edit"><i class="fa-solid fa-xmark"></i></button>
+            <p id="error"></p>
+            <h1 class="popup-title">Edit Profile</h1>
+            <h3>Profile Photo</h3>
+            <center><input type="file" class="input" id="photo"></center>
+            <h3>Bio</h3>
+            <textarea maxlength="100" class="input area" id="bio"></textarea>
+            <h3>Age</h3>
+            <input type="text" maxlength="2" class="input" id="age">
+            <button class="button last" id="edit-profile">Edit</button>
+        </div>
+		<h1 id='ra'>Heyooo</h1>
+        <div class="favorites flex" id="favorite-form">
+            <button class="close" id="close-favorite"><i class="fa-solid fa-xmark"></i></button>
+            <h1 class="popup-title">Favorites</h1>
+            <div class="favorite-user flex" id="favorite-list">
+            </div>    
+        </div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+        <script src="scripts/script.js"></script>
+        <script>
+            loadFor("home");
+        </script>
+    </body>
+</html

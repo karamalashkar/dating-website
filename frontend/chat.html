@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>Chat Page</title>
+    </head>
+    <body>
+        <section class="landing-bar">
+            <nav class="nav-bar">
+                <div class="item logo">
+                    <a href="#">Online Dating</a>
+                </div>
+                <div class="item links">
+                    <ul>
+                        <li><a href="../frontend/home.html">Home</a></li>
+                        <li><a>Favorites</a></li>
+                        <li><a href="../frontend/chat.html">Chats</a></li>
+                    </ul>
+                    <button class="bar-button">Logout</button>
+                </div>
+            </nav>
+        </section>
+        <section class="page-body">
+            <div class="body-section flex profile">
+                <img src="assets/chat.png" class="profile-image">
+                <h1 class="message-title">Send Message</h1>
+                <p class="error-message" id="error-chat"></p>
+                <input type="number" placeholder="ID" class="input" id="chat-id">
+                <textarea class="input message" placeholder="Message" id="chat-message"></textarea>
+                <button class="button black" id="send">Send</button>
+            </div>
+            <div class="body-section">
+                <div class="users flex" id="message">
+                    <button class="close refresh" id="refresh"><i class="fa-solid fa-arrows-rotate"></i></button>
+                </div>
+            </div>
+        </section>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+        <script src="scripts/script.js"></script>
+        <script>
+            loadFor("chat");
+        </script>
+    </body>
+</html>

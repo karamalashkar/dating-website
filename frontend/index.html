@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="styles/style.css">
+        <title>Landing Page</title>
+    </head>
+    <body>
+        <section class="landing-bar">
+            <nav class="navbar">
+                <a href="#">Online Dating</a>
+            </nav>
+        </section>
+        <section class="landing-body flex">
+            <!--Sign-up Form-->
+            <div class="sign flex" id="sign-up">
+                <form class="form" id="form" method="POST">
+                    <h1 class="title">Sign Up</h1>
+					<p class='error-password' id="error-password"></p>
+                    <input type="text" placeholder="Name" class="input" name="name" required>
+                    <input type="email" placeholder="Email" class="input" name="email" required>
+                    <input type="password" placeholder="Password" class="input" name="password" required>
+                    <select id="location" class="input" name="location" required>
+                        <option value="">Location</option>
+                        <option value="1">Beirut</option>
+                        <option value="2">Mount Lebanon</option>
+                        <option value="3">North Lebanon</option>
+                        <option value="4">South Lebanon</option>
+                        <option value="5">Bekaa</option>
+                        <option value="6">Nabatiyeh</option>
+                        <option value="7">Baalback</option>
+                        <option value="8">Akkar</option>
+                    </select>
+                    <select id="gender" class="input" name="gender" required>
+                        <option value="">Gender</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                    </select>
+                    <select id="interested" class="input" name="intersted" required>
+                        <option value="">Intersted</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="3">Both</option>
+                    </select>
+                    <button class="button" id="signup-button">Sign Up</button>
+                </form>
+                <span>Already have an account? <a href="#" id="change">Sign in</a></span>
+            </div>
+            <!--Sign-in Form-->
+            <div class="sign none" id="sign-in">
+                <form class="form" id="form-in">
+                    <h1 class="title">Sign In</h1>
+                    <input type="email" placeholder="Email" class="input" name="email_login" required>
+                    <input type="password" placeholder="Password" class="input" name="password_login" required>
+                    <button class="button" id="singin-button">Sign In</button>
+                </form>
+            </div>
+        </section>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+        <script src="scripts/script.js"></script>
+        <script>
+            loadFor("landing");
+        </script>
+    </body>
+</html>

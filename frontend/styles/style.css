@@ -1,0 +1,364 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.none{
+    display: none;
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* styling navbar */
+.navbar{
+    width: 100%;
+    height: auto;
+    display: flex;
+    background-color: red;
+}
+
+.navbar a{
+    text-decoration: none;
+    padding: 25px 55px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.nav-bar{
+    width: 100%;
+    height: auto;
+    display: flex;
+    background-color: red;
+}
+
+.nav-bar a{
+    text-decoration: none;
+    padding: 50px;
+    line-height: 80px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/*Body section*/
+
+.title{
+    padding: 20px 0;
+    color: white;
+    font-size: 40px;
+}
+
+.sign{
+    width: 40%;
+    height: 515px;
+    margin: 30px 0;
+    background-color: red;
+    border-radius: 20px;
+    position: absolute;
+}
+
+.input{
+    width: 60%;
+    height: 40px;
+    margin: 5px;
+    padding: 10px;    
+}
+
+.button{
+    width: 60%;
+    height: 40px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 20px;
+    background-color: white;
+    font-size: 18px;
+}
+
+.button:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+span{
+    color: white;
+}
+
+span a{
+    color: white;
+}
+
+.logo{
+    flex-basis: 65%;
+}
+
+ul{
+    list-style: none;
+    display: flex;
+    line-height: 80px;
+}
+
+.links{
+    display: flex;
+}
+
+.links a{
+    padding: 0 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.bar-button{
+    width: 100px;
+    height: 40px;
+    margin: 20px 50px 20px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.page-body{
+    display: flex;
+}
+
+.body-section{
+    width: 50%;
+    height: 575px;
+}
+
+.profile{
+    border-right: 1px solid black;
+}
+
+.profile-image{
+    width: 30%;
+    height: 30%;
+    margin: 25px 0;
+    border-radius: 50%;
+}
+
+.bio{
+    margin: 30px 0;
+    width: 50%;
+}
+
+.black{
+    background-color: black;
+    color: white;
+    width: 30%;
+}
+
+.edit{
+    width: 40%;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    position: absolute;
+    left: 5%;
+    bottom: 3%;
+    display: none;
+}
+
+.popup-title{
+    margin: 20px;
+}
+
+.edit h3{
+    margin: 10px;
+}
+
+.area{
+    height: 70px;
+}
+
+.last{
+    margin-bottom: 50px;
+}
+
+.close{
+    width: 4%;
+    height: 25px;
+    margin: 10px 0;
+    font-size: 20px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.users{
+    height: 500px;
+    overflow-y: auto;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 70px;
+    margin: 20px 0;
+    background-color: lightgrey;
+    border-radius: 20px;
+}
+
+.user-image{
+    width: 10%;
+    height: 60%;
+    margin: 0 20px;
+    border-radius: 50%;
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    flex-basis: 75%;
+}
+
+.buttons{
+    display: flex;
+}
+
+.user-button{
+    width: 50px;
+    height: 30px;
+    margin: 0 10px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.favorites{
+    width: 50%;
+    height: 500px;
+    position: absolute;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    left: 25%;
+    bottom: 10%;
+    display: none;
+}
+
+.favorite-user{
+    width: 80%;
+    height: 350px;
+    overflow-y: auto;
+}
+
+.message{
+    height: 100px;
+}
+
+.message-title{
+    margin: 20px;
+    font-size: 40px;
+}
+
+.receive-message{
+    width: 90%;
+    margin: 20px;
+    background-color: lightgrey;
+    border-radius: 20px;
+}
+
+.message-sender{
+    width: 90%;
+    display: flex;
+    align-items: center;
+}
+
+.message-body{
+    width: 90%;
+}
+
+.message-body p{
+    margin: 10px 0 10px 20px;
+    font-size: 20px;
+}
+
+.refresh{
+    color: black;
+}
+
+.menu-button{
+    border: none;
+    margin-right: 50px;
+    font-size: 25px;
+    background-color: transparent;
+    color: white;
+    display: none;
+    position: ;
+    float: left;
+}
+
+.form{
+    text-align: center;
+}
+
+.error-message{
+    margin: 10px 0;
+    color: red;
+}
+
+.error-password{
+	color: white;
+	font-size: 14px;
+}
+
+.user-list{
+	display: none;
+}
+	
+
+@media (max-width: 900px){
+    .sign{
+        width: 90%;
+    }
+    
+    .page-body{
+        flex-direction: column;
+    }
+
+    .body-section{
+        width: 100%;
+    }
+
+    .profile{
+        border-right: none;
+        border-bottom: 1px solid black;
+    }
+
+    .nav-bar{
+        display: block;
+    }
+
+    .links{
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        background-color: red;
+        width: 100%;
+        display: none;
+    }
+
+    ul{
+        flex-direction: column;
+    }
+
+    .bar-button{
+        margin: 20px 0;
+    }
+
+    .menu-button{
+        display: block;
+    }
+}
