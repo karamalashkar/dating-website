@@ -12,9 +12,8 @@ Route::group(["middleware" => "auth:api"], function(){
     Route::post("/get_favorite",[UserController::class, 'getFavorite']);
     Route::post("/add_favorite",[UserController::class, 'addFavorite']);
     Route::post("/add_block",[UserController::class, 'addBlock']);
-    Route::post("/edit",[UserController::class, 'editProfile']);
+    Route::post("/edit",[UserController::class, 'editProfile']);    
 }); 
-
 Route::post("/login",[AuthController::class, 'login'])->name("login");
 Route::post("/add_user",[UserController::class, 'addUser']);
 

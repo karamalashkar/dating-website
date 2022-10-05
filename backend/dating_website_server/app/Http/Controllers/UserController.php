@@ -17,8 +17,8 @@ class UserController extends Controller
         $user= new User;
 
         $user->name=$request->name;
-        $user->email=$request->email;
-        $user->password=password_hash($request->password,PASSWORD_DEFAULT);
+        $user->email=$request->email_up;
+        $user->password=password_hash($request->password_up,PASSWORD_DEFAULT);
         $user->location=$request->location;
         $user->gender=$request->gender;
         $user->interest=$request->intersted;
@@ -39,6 +39,8 @@ class UserController extends Controller
 
     //get user using user_id
     function getUser(Request $request){
+
+
         $id=$request->user_id;
 
         $users=User::
@@ -54,10 +56,12 @@ class UserController extends Controller
 
     //get all users having the same interest
     function getInterestUser(Request $request){
+        $id=$request->id;
         $interest=$request->interest_id;
 
         $users=User::
-                where('interest',$interest)
+                where('gender',$interest)
+                ->where('id','!=',$id)
                 ->get();
 
         return response()->json([
@@ -66,6 +70,7 @@ class UserController extends Controller
         ]);
 
     }
+
 
     //send message
     function addMessage(Request $request){
@@ -156,15 +161,13 @@ class UserController extends Controller
     //edit profile
     function editProfile(Request $request){
         $status=$request->status;
-        
         if($status=='imageOnly'){
             $code64 = explode(',', $request->image);
             $img = base64_decode($code64[1]);
             $extension = explode(";", explode('/', $code64[0])[1])[0];
-            $photo_path = "profile/" . uniqid() . "." . $extension;
+            $photo_path = "C:\Users\RT\Desktop\dating\dating-website\profile/" . uniqid() . "." . $extension;
             file_put_contents($photo_path, $img);  
-            $users=User::where('id',$request->id)
-            ->update(['picture'=>$photo_path]);
+            $users=User::where('id',$request->id)->update(['picture'=>$photo_path]);
             return response()->json([
                 'success' => "success",
                 'data' => $users
@@ -184,7 +187,7 @@ class UserController extends Controller
             $code64 = explode(',', $request->image);
             $img = base64_decode($code64[1]);
             $extension = explode(";", explode('/', $code64[0])[1])[0];
-            $photo_path = "profile/" . uniqid() . "." . $extension;
+            $photo_path = "C:\Users\RT\Desktop\dating\dating-website\profile/" . uniqid() . "." . $extension;
             file_put_contents($photo_path, $img);  
             $users=User::where('id',$request->id)
             ->update(['picture'=>$photo_path,'bio'=>$request->bio,'age'=>$request->age]);
@@ -194,4 +197,5 @@ class UserController extends Controller
             ]);
         }
     }
+
 }
